@@ -61,12 +61,12 @@ public class CalendarUtils {
     }
 
     public static String timeFormat(LocalTime localTime) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("kk:mm:ss");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("kk:mm");
         return  localTime.format(dateTimeFormatter);
     }
 
     public static String dateFormat(LocalDate localDate) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-        return  localDate.format(dateTimeFormatter);
+        return localDate.format(dateTimeFormatter);
     }
 }

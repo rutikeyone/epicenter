@@ -14,6 +14,7 @@ import com.example.organizerforlaserhairremovalsalon.ContactsBook.ContactEntity;
 import com.example.organizerforlaserhairremovalsalon.Database.DataBaseHelperContacts;
 import com.example.organizerforlaserhairremovalsalon.R;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class EventAdapter extends ArrayAdapter<EventEntity> {
@@ -38,8 +39,17 @@ public class EventAdapter extends ArrayAdapter<EventEntity> {
         eventEventCell.setText(eventTitle);
 
         DataBaseHelperContacts dataBaseHelperContacts = new DataBaseHelperContacts(getContext().getApplicationContext());
-        ContactEntity contactEntity = dataBaseHelperContacts.getContactById(eventEntity.getContactId());
-        eventContactCell.setText(contactEntity.getName());
+        ContactEntity contactEntity = null;
+        contactEntity = dataBaseHelperContacts.getContactById(eventEntity.getContactId());
+
+        String contactName = contactEntity.getName();
+
+        if(contactName != null && !contactName.isEmpty()) {
+            eventContactCell.setText(contactName);
+            eventContactCell.setVisibility(View.VISIBLE);
+        } else {
+            eventContactCell.setVisibility(View.GONE);
+        }
 
         return convertView;
     }

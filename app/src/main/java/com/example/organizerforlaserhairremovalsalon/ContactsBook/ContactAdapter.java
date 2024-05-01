@@ -1,7 +1,8 @@
 package com.example.organizerforlaserhairremovalsalon.ContactsBook;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.organizerforlaserhairremovalsalon.R;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
-public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactVewHolder>{
-    private Context context;
-    private ArrayList<ContactEntity> contactEntityList;
-    private ContactAdapter contactAdapter;
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactVewHolder> {
+    private final Context context;
     OnItemListener onItemListener;
 
-    public ContactAdapter(Context context, ArrayList<ContactEntity> contactEntityList, OnItemListener onItemListener) {
+    private ArrayList<ContactEntity> contactEntityList = new ArrayList<>();
+
+    public ContactAdapter(Context context, OnItemListener onItemListener) {
         this.context = context;
-        this.contactEntityList = contactEntityList;
         this.onItemListener = onItemListener;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void updateData(ArrayList<ContactEntity> data) {
+        contactEntityList = data;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -34,11 +40,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
         View view = layoutInflater.inflate(R.layout.contact_item, parent, false);
 
-        List<Long> contactIds = new ArrayList<>();
-        for (ContactEntity contactEntity : this.contactEntityList) {
-            contactIds.add(contactEntity.getId());
-        }
-        return new ContactVewHolder(view, this.onItemListener, contactIds);
+        return new ContactVewHolder(view, this.onItemListener);
     }
 
     @Override
@@ -49,24 +51,18 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         long id = contactEntity.getId();
         String name = contactEntity.getName();
         String phone = contactEntity.getPhone();
+        Bitmap image = contactEntity.getImage();
 
         holder.contactName.setText(name);
-//        holder.contactName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, Contact.class);
-//                intent.putExtra("contactId", id);
-//                context.startActivity(intent);
-//            }
-//        });
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, Contact.class);
-//                intent.putExtra("contactId", id);
-//                context.startActivity(intent);
-//            }
-//        });
+        holder.contactPhone.setText(phone);
+
+        holder.bind(id);
+
+        if (image != null) {
+            holder.contactImage.setImageBitmap(image);
+        } else {
+            holder.contactImage.setImageResource(R.drawable.baseline_person_24);
+        }
     }
 
     @Override
@@ -75,26 +71,36 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     }
 
 
-    static class ContactVewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        List<Long> contactIds;
+    static class ContactVewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView contactName;
+        TextView contactPhone;
+        CircleImageView contactImage;
         OnItemListener onItemListener;
-        public ContactVewHolder(@NonNull View itemView, OnItemListener onItemListener, List<Long> contactIds) {
+
+        long id;
+
+        public ContactVewHolder(@NonNull View itemView, OnItemListener onItemListener) {
             super(itemView);
 
             this.contactName = itemView.findViewById(R.id.contact_name);
+            this.contactPhone = itemView.findViewById(R.id.contact_phone);
+            this.contactImage = itemView.findViewById(R.id.contact_image);
             this.onItemListener = onItemListener;
-            this.contactIds = contactIds;
+
             itemView.setOnClickListener(this);
+        }
+
+        public void bind(long id) {
+            this.id = id;
         }
 
         @Override
         public void onClick(View v) {
-            this.onItemListener.onItemClick(this.getAdapterPosition(), this.contactIds.get(getAdapterPosition()));
+            this.onItemListener.onItemClick(id);
         }
     }
 
     public interface OnItemListener {
-        void onItemClick(int pos, Long contactId);
+        void onItemClick(long id);
     }
 }

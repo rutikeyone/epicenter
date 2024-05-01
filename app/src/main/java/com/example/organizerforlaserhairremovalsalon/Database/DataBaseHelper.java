@@ -15,12 +15,14 @@ public abstract class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(DatabaseContactsConstants.CREATE_TABLE);
         db.execSQL(DatabaseEventsConstants.CREATE_TABLE);
+        db.execSQL(DatabaseServicesConstants.CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DatabaseContactsConstants.DROP_TABLE);
         db.execSQL(DatabaseEventsConstants.DROP_TABLE);
+        db.execSQL(DatabaseServicesConstants.DROP_TABLE);
 
         this.onCreate(db);
     }

@@ -23,6 +23,7 @@ import com.example.organizerforlaserhairremovalsalon.ContactsBook.ContactListAct
 import com.example.organizerforlaserhairremovalsalon.Database.DataBaseHelperContacts;
 import com.example.organizerforlaserhairremovalsalon.Database.DataBaseHelperEvents;
 import com.example.organizerforlaserhairremovalsalon.Interfaces.OnItemCalendarListener;
+import com.example.organizerforlaserhairremovalsalon.Services.ServiceListActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.time.LocalDate;
@@ -76,26 +77,30 @@ public class MainActivity extends AppCompatActivity implements OnItemCalendarLis
         this.menu = findViewById(R.id.nav_view);
 
         this.menu.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        int id = item.getItemId();
+                item -> {
+                    int id = item.getItemId();
 
-                        if (id == R.id.event_list_btn_menu) {
-                            manuLayout.close();
-                            return true;
-                        } else if (id == R.id.contact_list_btn_menu) {
-                            startActivity(new Intent(MainActivity.this, ContactListActivity.class));
-                            manuLayout.close();
-                            return true;
-                        } else if (id == R.id.about_btn_menu) {
-                            Toast.makeText(MainActivity.this, "Органайзер для салона лазерной эпиляции. Ver. 1.0", Toast.LENGTH_LONG).show();
-                            manuLayout.close();
-                            return true;
-                        }
-
-                        return false;
+                    if (id == R.id.event_list_btn_menu) {
+                        manuLayout.close();
+                        return true;
+                    } else if (id == R.id.contact_list_btn_menu) {
+                        startActivity(new Intent(MainActivity.this, ContactListActivity.class));
+                        manuLayout.close();
+                        return true;
                     }
+                    else if(id == R.id.services) {
+                        Intent launchServicesIntent = new Intent(MainActivity.this, ServiceListActivity.class);
+                        startActivity(launchServicesIntent);
+                        manuLayout.close();
+                        return true;
+                    }
+                    else if (id == R.id.about_btn_menu) {
+                        Toast.makeText(MainActivity.this, "Органайзер для салона лазерной эпиляции. Ver. 1.0", Toast.LENGTH_LONG).show();
+                        manuLayout.close();
+                        return true;
+                    }
+
+                    return false;
                 }
         );
     }

@@ -3,16 +3,21 @@
     <item
         android:id="@+id/event_list_btn_menu"
         android:icon="@drawable/baseline_event_list"
-        android:title="Календарь"/>
+        android:title="Календарь" />
 
     <item
         android:id="@+id/contact_list_btn_menu"
         android:icon="@drawable/baseline_perm_contact_list"
-        android:title="Контакты"/>
+        android:title="Контакты" />
+
+    <item
+        android:id="@+id/services"
+        android:icon="@drawable/services_24"
+        android:title="Услуги" />
 
     <item
         android:id="@+id/about_btn_menu"
         android:icon="@drawable/about"
-        android:title="О программе"/>
+        android:title="О программе" />
 
 </menu>

@@ -90,6 +90,7 @@
                 android:onClick="deleteContact"
                 android:scaleType="fitCenter"
                 android:src="@drawable/baseline_delete_24" />
+
         </LinearLayout>
 
     </LinearLayout>

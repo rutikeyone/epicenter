@@ -17,8 +17,6 @@
         android:fontFamily="casual"
         android:orientation="vertical">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +43,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:fontFamily="casual"
                 android:text="Декабрь 2024"
                 android:textAlignment="center"
                 android:textColor="@color/coffeeMilkDark"

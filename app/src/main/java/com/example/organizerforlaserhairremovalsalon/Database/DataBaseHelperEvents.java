@@ -26,8 +26,9 @@ public class DataBaseHelperEvents extends DataBaseHelper {
         contentValues.put(DatabaseEventsConstants.DATE, eventEntity.getDate().toEpochDay());
         contentValues.put(DatabaseEventsConstants.TIME, eventEntity.getTime().toSecondOfDay());
         contentValues.put(DatabaseEventsConstants.CONTACT_ID, eventEntity.getContactId());
+        contentValues.put(DatabaseEventsConstants.SERVICE_ID, eventEntity.getServiceId());
 
-        long id =  db.insert(DatabaseEventsConstants.TABLE_NAME, null, contentValues);
+        long id = db.insert(DatabaseEventsConstants.TABLE_NAME, null, contentValues);
 
         db.close();
 
@@ -41,12 +42,13 @@ public class DataBaseHelperEvents extends DataBaseHelper {
         contentValues.put(DatabaseEventsConstants.DATE, eventEntity.getDate().toEpochDay());
         contentValues.put(DatabaseEventsConstants.TIME, eventEntity.getTime().toSecondOfDay());
         contentValues.put(DatabaseEventsConstants.CONTACT_ID, eventEntity.getContactId());
+        contentValues.put(DatabaseEventsConstants.SERVICE_ID, eventEntity.getServiceId());
 
         db.update(
-            DatabaseEventsConstants.TABLE_NAME,
-            contentValues,
-            DatabaseEventsConstants.ID + " =? ",
-            new String[]{String.valueOf(eventEntity.getId())}
+                DatabaseEventsConstants.TABLE_NAME,
+                contentValues,
+                DatabaseEventsConstants.ID + " =? ",
+                new String[]{String.valueOf(eventEntity.getId())}
         );
 
         db.close();
@@ -79,13 +81,14 @@ public class DataBaseHelperEvents extends DataBaseHelper {
         if (cursor.moveToFirst()) {
             do {
                 result.add(
-                    new EventEntity(
-                        cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.ID)),
-                        cursor.getString(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.NAME)),
-                        LocalDate.ofEpochDay(cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.DATE))),
-                        LocalTime.ofSecondOfDay(cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.TIME))),
-                        cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.CONTACT_ID))
-                    )
+                        new EventEntity(
+                                cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.ID)),
+                                cursor.getString(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.NAME)),
+                                LocalDate.ofEpochDay(cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.DATE))),
+                                LocalTime.ofSecondOfDay(cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.TIME))),
+                                cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.CONTACT_ID)),
+                                cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseEventsConstants.SERVICE_ID))
+                        )
                 );
             } while (cursor.moveToNext());
         }

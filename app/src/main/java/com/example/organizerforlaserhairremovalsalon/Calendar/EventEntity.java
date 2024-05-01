@@ -1,6 +1,7 @@
 package com.example.organizerforlaserhairremovalsalon.Calendar;
 
 import com.example.organizerforlaserhairremovalsalon.ContactsBook.ContactEntity;
+import com.example.organizerforlaserhairremovalsalon.Services.ServiceEntity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,15 +14,18 @@ public class EventEntity {
     private LocalTime time;
 
     private long contactId;
+    private long serviceId;
 
     private ContactEntity contactEntity;
+
+    private ServiceEntity serviceEntity;
 
     public static ArrayList<EventEntity> eventsArrayList = new ArrayList<>();
 
     public static ArrayList<EventEntity> eventsForDate(LocalDate date) {
         ArrayList<EventEntity> result = new ArrayList<>();
 
-        for(EventEntity eventEntity : EventEntity.eventsArrayList) {
+        for (EventEntity eventEntity : EventEntity.eventsArrayList) {
             if (eventEntity.getDate().equals(date)) {
                 result.add(eventEntity);
             }
@@ -30,12 +34,13 @@ public class EventEntity {
         return result;
     }
 
-    public EventEntity(long id, String name, LocalDate date, LocalTime time, long contactId) {
+    public EventEntity(long id, String name, LocalDate date, LocalTime time, long contactId, long serviceId) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.time = time;
         this.contactId = contactId;
+        this.serviceId = serviceId;
     }
 
     public EventEntity(String name, LocalDate date, LocalTime time) {
@@ -80,6 +85,14 @@ public class EventEntity {
         return this.contactId;
     }
 
+    public void setServiceId(long id) {
+        this.serviceId = id;
+    }
+
+    public long getServiceId() {
+        return this.serviceId;
+    }
+
     public void setContactId(long contactId) {
         this.contactId = contactId;
     }
@@ -90,5 +103,13 @@ public class EventEntity {
 
     public ContactEntity getContactEntity() {
         return contactEntity;
+    }
+
+    public void setServiceEntity(ServiceEntity serviceEntity) {
+        this.serviceEntity = serviceEntity;
+    }
+
+    public ServiceEntity getServiceEntity() {
+        return serviceEntity;
     }
 }
