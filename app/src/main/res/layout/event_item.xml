@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:fontFamily="casual"
+    android:layout_height="60dp">
+
+    <TextView
+        android:id="@+id/eventCellEventTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="20dp"
+        android:textSize="20sp"
+        android:textColor="@color/coffeeMilkDark"
+        android:fontFamily="casual"
+        android:text="Событие"/>
+
+    <TextView
+        android:id="@+id/eventCellContactNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Событие"
+        android:textAlignment="center"
+        android:textColor="@color/coffeeMilkDark"
+        android:textSize="15sp"
+        android:textStyle="italic" />
+
+</LinearLayout>

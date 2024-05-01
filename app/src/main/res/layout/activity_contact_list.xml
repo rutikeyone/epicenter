@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/ContactList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/skinPink"
+    tools:context=".ContactsBook.ContactListActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/contact_RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/contact_item"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/cardview_compat_inset_shadow"
+        android:layout_marginTop="@dimen/cardview_compat_inset_shadow"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="21dp"
+        android:backgroundTint="@color/brown"
+        android:clickable="true"
+        android:contentDescription="Добавить"
+        android:elevation="@dimen/cardview_compat_inset_shadow"
+        android:src="@drawable/baseline_add_24"
+        android:tint="@color/white"
+        app:borderWidth="0dp"
+        app:pressedTranslationZ="@dimen/cardview_compat_inset_shadow" />
+
+</RelativeLayout>

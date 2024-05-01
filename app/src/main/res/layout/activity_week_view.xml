@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fontFamily="casual"
+    android:background="@drawable/bg_1"
+    android:gravity="fill"
+    tools:context=".Calendar.WeekViewActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp">
+
+        <ImageButton
+            android:onClick="prevWeekAction"
+            android:layout_width="20dp"
+            android:layout_height="30sp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/back1"
+            android:textColor="@color/coffeeMilkDark"
+            android:background="@null"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/monthYearTextView"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="Декабрь 2024"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:fontFamily="casual"
+            android:textColor="@color/coffeeMilkDark"/>
+
+        <ImageButton
+            android:onClick="nextWeekAction"
+            android:layout_width="20dp"
+            android:layout_height="30sp"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:src="@drawable/forward1"
+            android:textColor="@color/coffeeMilkDark"
+            android:background="@null"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Пн"
+            android:textColor="@color/coffeeMilk"
+            android:textAlignment="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Вт"
+            android:textColor="@color/coffeeMilk"
+            android:textAlignment="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ср"
+            android:textColor="@color/coffeeMilk"
+            android:textAlignment="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Чт"
+            android:textColor="@color/coffeeMilk"
+            android:textAlignment="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Пт"
+            android:textColor="@color/coffeeMilk"
+            android:textAlignment="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Сб"
+            android:textColor="@color/coffeeMilk"
+            android:textAlignment="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Вс"
+            android:textColor="@color/coffeeMilk"
+            android:textAlignment="center"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/weekRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:onClick="newEventAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Записать на прием"
+        android:textColor="@color/coffeeMilkDark"
+        android:background="@null"
+        android:textStyle="bold"
+        android:fontFamily="casual"
+        android:textSize="20sp"/>
+
+    <ListView
+        android:id="@+id/eventListViev"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fontFamily="casual"
+        android:layout_weight="5"/>
+
+</LinearLayout>

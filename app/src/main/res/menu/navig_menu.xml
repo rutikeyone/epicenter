@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/event_list_btn_menu"
+        android:icon="@drawable/baseline_event_list"
+        android:title="Календарь"/>
+
+    <item
+        android:id="@+id/contact_list_btn_menu"
+        android:icon="@drawable/baseline_perm_contact_list"
+        android:title="Контакты"/>
+
+    <item
+        android:id="@+id/about_btn_menu"
+        android:icon="@drawable/about"
+        android:title="О программе"/>
+
+</menu>

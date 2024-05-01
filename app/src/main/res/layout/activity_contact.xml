@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_contact"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/skinPink"
+    tools:context=".ContactsBook.Contact">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="5sp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/contact_image"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_gravity="center"
+            android:src="@drawable/baseline_person_24"
+            app:civ_border_color="@color/black"
+            app:civ_border_width="1sp" />
+
+        <EditText
+            android:id="@+id/NameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/background_imput_field"
+            android:drawableStart="@drawable/baseline_text_fields_24"
+            android:hint="ФИО"
+            android:inputType="textPersonName"
+            android:padding="10sp"
+            android:drawablePadding="@dimen/cardview_default_elevation"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/PhoneEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/background_imput_field"
+            android:drawableStart="@drawable/baseline_local_phone_24"
+            android:hint="Телефон"
+            android:inputType="phone"
+            android:padding="10sp"
+            android:drawablePadding="@dimen/cardview_default_elevation"
+            android:textColorHint="@color/white" />
+
+        <EditText
+            android:id="@+id/CommentContactEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:background="@drawable/background_imput_field"
+            android:drawableStart="@drawable/baseline_text_fields_24"
+            android:hint="Примечание"
+            android:inputType="textLongMessage"
+            android:padding="10sp"
+            android:drawablePadding="@dimen/cardview_default_elevation"
+            android:textColorHint="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/save_contact"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_marginTop="30sp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="Сохранить"
+                android:onClick="saveContact"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_save_24" />
+
+            <ImageButton
+                android:id="@+id/delete_contact"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
+                android:layout_marginTop="30sp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:contentDescription="Удалить"
+                android:onClick="deleteContact"
+                android:scaleType="fitCenter"
+                android:src="@drawable/baseline_delete_24" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
