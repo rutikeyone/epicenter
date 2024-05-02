@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import com.example.organizerforlaserhairremovalsalon.Database.DataBaseHelperCont
 import com.example.organizerforlaserhairremovalsalon.Database.DataBaseHelperEvents;
 import com.example.organizerforlaserhairremovalsalon.Interfaces.OnItemCalendarListener;
 import com.example.organizerforlaserhairremovalsalon.Services.ServiceListActivity;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.navigation.NavigationView;
 
 import java.time.LocalDate;
@@ -32,8 +34,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements OnItemCalendarListener {
     private TextView monthYearTextView;
     private RecyclerView calRecyclerView;
-    private DrawerLayout manuLayout;
-    private NavigationView menu;
     private boolean recreateContactsTable = false;
     private boolean recreateEventsTable = false;
 
@@ -56,6 +56,12 @@ public class MainActivity extends AppCompatActivity implements OnItemCalendarLis
         this.setContentView(R.layout.activity_main);
         this.initialiseWidgets();
         this.setMonthView();
+        this.setupToolBar();
+    }
+
+    private void setupToolBar() {
+        MaterialToolbar toolbar = findViewById(R.id.mainToolbar);
+        setSupportActionBar(toolbar);
     }
 
     private void setMonthView() {
@@ -73,36 +79,6 @@ public class MainActivity extends AppCompatActivity implements OnItemCalendarLis
     private void initialiseWidgets() {
         this.calRecyclerView = findViewById(R.id.calendarRecyclerView);
         this.monthYearTextView = findViewById(R.id.monthYearTextView);
-        this.manuLayout = findViewById(R.id.manu_layout);
-        this.menu = findViewById(R.id.nav_view);
-
-        this.menu.setNavigationItemSelectedListener(
-                item -> {
-                    int id = item.getItemId();
-
-                    if (id == R.id.event_list_btn_menu) {
-                        manuLayout.close();
-                        return true;
-                    } else if (id == R.id.contact_list_btn_menu) {
-                        startActivity(new Intent(MainActivity.this, ContactListActivity.class));
-                        manuLayout.close();
-                        return true;
-                    }
-                    else if(id == R.id.services) {
-                        Intent launchServicesIntent = new Intent(MainActivity.this, ServiceListActivity.class);
-                        startActivity(launchServicesIntent);
-                        manuLayout.close();
-                        return true;
-                    }
-                    else if (id == R.id.about_btn_menu) {
-                        Toast.makeText(MainActivity.this, "Органайзер для салона лазерной эпиляции. Ver. 1.0", Toast.LENGTH_LONG).show();
-                        manuLayout.close();
-                        return true;
-                    }
-
-                    return false;
-                }
-        );
     }
 
     public void prevMonthAction(View view) {
@@ -121,5 +97,32 @@ public class MainActivity extends AppCompatActivity implements OnItemCalendarLis
             CalendarUtils.dateSelected = localDate;
             startActivity(new Intent(this, WeekViewActivity.class));
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navig_menu,  menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        long id = item.getItemId();
+
+        if (id == R.id.contact_list_btn_menu) {
+            startActivity(new Intent(MainActivity.this, ContactListActivity.class));
+            return true;
+        }
+        else if(id == R.id.services) {
+            Intent launchServicesIntent = new Intent(MainActivity.this, ServiceListActivity.class);
+            startActivity(launchServicesIntent);
+            return true;
+        }
+        else if (id == R.id.about_btn_menu) {
+            Toast.makeText(MainActivity.this, "Органайзер для салона лазерной эпиляции. Ver. 1.0", Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
